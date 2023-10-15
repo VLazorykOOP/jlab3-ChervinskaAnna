@@ -108,7 +108,7 @@ class Dollar extends Currency {
     // Реалізація методу для переводу суми в гривні для долара
     @Override
     public double convertToUah() {
-        // Логіка переведення долара в гривні
+        // переведення долара в гривні
         return amount * exchangeRateToUah;
     }
 
@@ -132,7 +132,7 @@ class Euro extends Currency {
     // Реалізація методу для переводу суми в гривні для євро
     @Override
     public double convertToUah() {
-        // Логіка переведення євро в гривні
+        // переведення євро в гривні
         return amount * exchangeRateToUah;
     }
 
