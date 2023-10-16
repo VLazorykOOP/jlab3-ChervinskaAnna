@@ -65,44 +65,20 @@ class Administration extends Employee {
     }
 }
 
-// Абстрактний базовий клас Currency
-abstract class Currency {
-    double amount; // Сума валюти
+interface Currency {
+    double convertToUah();
 
-    // Конструктор
-    public Currency(double amount) {
-        this.amount = amount;
-    }
-
-    // Абстрактний метод для переводу суми в гривні
-    public abstract double convertToUah();
-
-    // Абстрактний метод для виводу на екран
-    public abstract void display();
-
-    // Перевизначений метод toString
-    @Override
-    public String toString() {
-        return "Amount: " + amount;
-    }
-
-    // Перевизначений метод equals
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false;
-        Currency currency = (Currency) obj;
-        return Double.compare(currency.amount, amount) == 0;
-    }
+    void display();
 }
 
 // Похідний клас Dollar
-class Dollar extends Currency {
+class Dollar implements Currency {
+    // Поле для хранения суммы
+    private double amount;
+
     // Конструктор
     public Dollar(double amount) {
-        super(amount);
+        this.amount = amount;
     }
 
     // Реалізація методу для переводу суми в гривні для долара
@@ -123,10 +99,13 @@ class Dollar extends Currency {
 }
 
 // Похідний клас Euro
-class Euro extends Currency {
+class Euro implements Currency {
+    // Поле для хранения суммы
+    private double amount;
+
     // Конструктор
     public Euro(double amount) {
-        super(amount);
+        this.amount = amount;
     }
 
     // Реалізація методу для переводу суми в гривні для євро
@@ -150,7 +129,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         System.out.println("Java Lab 3 ");
-        System.out.println("Select the task you would like to see (1-2)");
+        System.out.println("Select the task you would like to see (1-3)");
         int choice = s.nextInt();
         if (s != null) {
             // s.close();
@@ -164,6 +143,7 @@ public class Main {
                     Second();
                     break;
                 }
+
                 default: {
                     System.out.print("There is no number with this task number");
                     break;
